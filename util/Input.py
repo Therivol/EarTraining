@@ -73,16 +73,16 @@ class Input:
                     Input.mouse_down[action_name] = True
 
     @staticmethod
-    def get_key(key):
+    def get_key(key: int) -> bool:
         return Input.raw_keys[key]
 
     @staticmethod
-    def get_button(button):
+    def get_button(button: int) -> bool:
         mouse_buttons = p.mouse.get_pressed()
         return mouse_buttons[button]
 
     @staticmethod
-    def get_key_down(key):
+    def get_key_down(key: int) -> bool:
         keys = p.key.get_pressed()
         if keys[key] and not Input.key_down[key]:
             Input.key_down[key] = True
@@ -92,7 +92,7 @@ class Input:
         return False
 
     @staticmethod
-    def get_button_down(button):
+    def get_button_down(button: int) -> bool:
         mouse_buttons = p.mouse.get_pressed()
         if mouse_buttons[button] and not Input.mouse_down[button]:
             Input.mouse_down[button] = True
@@ -102,7 +102,7 @@ class Input:
         return False
 
     @staticmethod
-    def get_mouse_pos():
+    def get_mouse_pos() -> tuple:
         res_x, res_y = Settings.get("RESOLUTION")
         win_x = Window.view.get_width()
         win_y = Window.view.get_height()

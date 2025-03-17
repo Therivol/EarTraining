@@ -42,6 +42,7 @@ class Intervals(Scene):
         self.playing = False
         self.showing = False
         self.harmonic = False
+        self.random_start = True
         self.last_play = 0
         self.pause_time = 1
 
@@ -53,6 +54,7 @@ class Intervals(Scene):
         self.set_showing(False)
         
         self.random_intervals = Interval.perfect_intervals
+        self.random_intervals.remove(0)
         self.direction = 1
 
         self.new_interval()
@@ -76,10 +78,10 @@ class Intervals(Scene):
                 self.harm_int_text = self.int_text
 
 
-        if (Input.get_key_down(p.K_SPACE) or self.play_button.update()) and not self.playing:
+        if (Input.get_key_down(p.K_SPACE) or self.play_button.update() or Input.get_button_down(0)) and not self.playing:
             self.play()
 
-        if Input.get_key_down(p.K_RETURN):
+        if Input.get_key_down(p.K_RETURN) or Input.get_button_down(2):
             if self.showing:
                 self.new_interval()
                 self.play()
@@ -130,7 +132,11 @@ class Intervals(Scene):
             self.play_interval()
 
     def new_interval(self):
-        self.first_note = Note(random.choice(Note.note_naturals), 4)
+        if self.random_start:
+            self.first_note = Note(random.choice(Note.note_names), 4)
+        else:
+            self.first_note = Note("C", 4)\
+                
         self.interval = random.choice(self.random_intervals)
                 
     def play_interval(self):
