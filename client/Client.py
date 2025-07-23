@@ -10,6 +10,9 @@ from util.Assets import Assets
 from util.Window import Window
 
 from client.scene.Intervals import Intervals
+from client.scene.ChordID import Chords
+from client.scene.ChordTransitions import ChordTransitions
+
 
 class Client:
     def __init__(self):
@@ -25,8 +28,12 @@ class Client:
         Window.resize(Settings.get("WINDOW SIZE"))
 
         Scenes.add_scene(Intervals())
+        Scenes.add_scene(Chords())
+        Scenes.add_scene(ChordTransitions())
 
-        Scenes.set_scene("INTERVALS")
+        # Scenes.set_scene("INTERVALS")
+        # Scenes.set_scene("CHORDS")
+        Scenes.set_scene("CHORD TRANSITIONS")
 
     def poll_events(self):
         Input.update()

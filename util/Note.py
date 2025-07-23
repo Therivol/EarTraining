@@ -45,6 +45,9 @@ class Note:
 
     def __str__(self):
         return self.name + str(self.octave)
+    
+    def __repr__(self):
+        return self.name
         
 
 class Interval:
@@ -62,6 +65,12 @@ class Interval:
     MINOR_SEVENTH = 10
     MAJOR_SEVENTH = 11
     OCTAVE = 12
+    
+    MAJOR = [FIRST, MAJOR_THIRD, PERFECT_FIFTH]
+    MINOR = [FIRST, MINOR_THIRD, PERFECT_FIFTH]
+    SEVENTH = [FIRST, MAJOR_THIRD, PERFECT_FIFTH, MINOR_SEVENTH]
+    
+    chord_types = {"MAJOR": MAJOR, "MINOR": MINOR, "7": SEVENTH}
 
     intervals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     interval_names = ["1st (Unison)", "Minor 2nd", "Major 2nd", "Minor 3rd", "Major 3rd", "Perfect 4th", "Tritone", 
@@ -79,4 +88,8 @@ class Interval:
     @staticmethod
     def get_name(interval):
         return Interval.interval_names[abs(interval)]
+    
+    @staticmethod
+    def get_chord(chord_type: str):
+        return Interval.chord_types[chord_type.upper()]
 

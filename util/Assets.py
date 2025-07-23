@@ -8,6 +8,7 @@ class Assets:
     images = {}
     working_directory = "assets/"
     font_1 = p.font.SysFont("Times New Roman", 48)
+    font_2 = p.font.SysFont("Times New Roman", 96)
 
     @staticmethod
     def get_image(path, alpha=False):
